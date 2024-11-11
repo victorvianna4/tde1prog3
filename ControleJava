@@ -1,0 +1,118 @@
+
+package controle;
+
+import dominio.Paciente;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ControleJava {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Paciente> pacientes = new ArrayList<>();
+
+        while (true) {
+            System.out.println("\nEscolha uma opção:");
+            System.out.println("1. Cadastrar Paciente");
+            System.out.println("2. Alterar Paciente");
+            System.out.println("3. Excluir Paciente");
+            System.out.println("4. Listar Pacientes");
+            System.out.println("5. Sair");
+
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o ID do paciente: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine(); // Limpar o buffer
+                    System.out.print("Digite o nome do paciente: ");
+                    String nome = scanner.nextLine();
+                    System.out.print("Digite o peso do paciente: ");
+                    double peso = scanner.nextDouble();
+                    System.out.print("Digite a altura do paciente: ");
+                    double altura = scanner.nextDouble();
+                    System.out.print("Digite o sexo do paciente (1 para Masculino, 2 para Feminino): ");
+                    int sexo = scanner.nextInt();
+
+                    Paciente paciente = new Paciente(id, nome, peso, altura, sexo);
+                    pacientes.add(paciente);
+                    System.out.println("Paciente cadastrado com sucesso!");
+                    break;
+
+                case 2: 
+                    System.out.print("Digite o ID do paciente a ser alterado: ");
+                    int idAlterar = scanner.nextInt();
+                    scanner.nextLine(); 
+                    boolean encontradoAlterar = false;
+
+                    for (Paciente p : pacientes) {
+                        if (p.getId() == idAlterar) {
+                            encontradoAlterar = true;
+                            System.out.println("Paciente encontrado: " + p);
+                            System.out.print("Digite o novo nome: ");
+                            String novoNome = scanner.nextLine();
+                            System.out.print("Digite o novo peso: ");
+                            double novoPeso = scanner.nextDouble();
+                            System.out.print("Digite a nova altura: ");
+                            double novaAltura = scanner.nextDouble();
+                            System.out.print("Digite o novo sexo (1 para Masculino, 2 para Feminino): ");
+                            int novoSexo = scanner.nextInt();
+
+                            
+                            p.setNome(novoNome);
+                            p.setPeso(novoPeso);
+                            p.setAltura(novaAltura);
+                            p.setSexo(novoSexo);
+
+                            System.out.println("Paciente alterado com sucesso!");
+                            break;
+                        }
+                    }
+
+                    if (!encontradoAlterar) {
+                        System.out.println("Paciente não encontrado.");
+                    }
+                    break;
+
+                case 3: 
+                    System.out.print("Digite o ID do paciente a ser excluído: ");
+                    int idExcluir = scanner.nextInt();
+                    boolean encontradoExcluir = false;
+
+                    for (int i = 0; i < pacientes.size(); i++) {
+                        if (pacientes.get(i).getId() == idExcluir) {
+                            pacientes.remove(i);
+                            encontradoExcluir = true;
+                            System.out.println("Paciente excluído com sucesso!");
+                            break;
+                        }
+                    }
+
+                    if (!encontradoExcluir) {
+                        System.out.println("Paciente não encontrado.");
+                    }
+                    break;
+
+                case 4: 
+                    if (pacientes.isEmpty()) {
+                        System.out.println("Nenhum paciente cadastrado.");
+                    } else {
+                        for (Paciente p : pacientes) {
+                            System.out.println(p);
+                        }
+                    }
+                    break;
+
+                case 5: 
+                    System.out.println("Saindo...");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
+    }
+}
