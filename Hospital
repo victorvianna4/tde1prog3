@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Hospital {
+    private ArrayList<Paciente> pacientes;
+
+    // Construtor
+    public Hospital() {
+        pacientes = new ArrayList<>();
+    }
+
+    // Método para incluir um paciente
+    public void incluirPaciente(Paciente paciente) {
+        pacientes.add(paciente);
+    }
+
+    // Método para alterar os dados de um paciente
+    public boolean alterarPaciente(int numeroIdentificacao, Paciente novosDados) {
+        for (int i = 0; i < pacientes.size(); i++) {
+            if (pacientes.get(i).getNumeroIdentificacao() == numeroIdentificacao) {
+                pacientes.set(i, novosDados);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Método para excluir um paciente
+    public boolean excluirPaciente(int numeroIdentificacao) {
+        for (int i = 0; i < pacientes.size(); i++) {
+            if (pacientes.get(i).getNumeroIdentificacao() == numeroIdentificacao) {
+                pacientes.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Método para listar todos os pacientes
+    public void listarPacientes() {
+        if (pacientes.isEmpty()) {
+            System.out.println("Não há pacientes cadastrados.");
+        } else {
+            for (Paciente paciente : pacientes) {
+                System.out.println(paciente);
+            }
+        }
+    }
+}
