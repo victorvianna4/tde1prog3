@@ -1,0 +1,64 @@
+public class Paciente {
+    private int numeroIdentificacao;
+    private String nome;
+    private double peso;
+    private double altura;
+    private int sexo;  // 1 para masculino, 2 para feminino, ou outros códigos conforme necessário
+
+    // Construtor
+    public Paciente(int numeroIdentificacao, String nome, double peso, double altura, int sexo) {
+        this.numeroIdentificacao = numeroIdentificacao;
+        this.nome = nome;
+        this.peso = peso;
+        this.altura = altura;
+        this.sexo = sexo;
+    }
+
+    // Getters e Setters
+    public int getNumeroIdentificacao() {
+        return numeroIdentificacao;
+    }
+
+    public void setNumeroIdentificacao(int numeroIdentificacao) {
+        this.numeroIdentificacao = numeroIdentificacao;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public int getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(int sexo) {
+        this.sexo = sexo;
+    }
+
+    // Método para exibir os dados do paciente
+    @Override
+    public String toString() {
+        String sexoStr = (sexo == 1) ? "Masculino" : (sexo == 2) ? "Feminino" : "Outro";
+        return "ID: " + numeroIdentificacao + ", Nome: " + nome + ", Peso: " + peso + "kg, Altura: " + altura + "m, Sexo: " + sexoStr;
+    }
+}
